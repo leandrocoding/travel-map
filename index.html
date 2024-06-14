@@ -227,7 +227,7 @@
                         const popup = new mapboxgl.Popup({
                             offset: 25,
                             closeOnClick: false
-                        }).setHTML('<img src="' + "data/img/" +  imagePath + '" alt="Picture" style="width:200px;height:auto;">');
+                        }).setHTML('<img src="' + "data/img/optimized/" +  imagePath + '" alt="Picture" style="width:200px;height:auto;">');
 
                         marker.setPopup(popup);
 
@@ -236,7 +236,7 @@
                     }
                 });
             };
-            img.src = "data/img/" +  imagePath;
+            img.src = "data/img/optimized/" +  imagePath;
         });
     }
 
