@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPX Routes and Pictures Viewer</title>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/togeojson/0.16.0/togeojson.min.js"></script>
+    <style>
+        body { margin: 0; padding: 0; }
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+        #menu { position: absolute; background: white; padding: 10px; z-index: 1; }
+    </style>
+</head>
+<body>
+
+<div id="menu">
+    <label><input type="checkbox" id="showAll" onchange="toggleAllRoutes()"> Show All Routes</label><br>
+    <div id="daySelectors"></div>
+</div>
+<div id="map"></div>
+
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoibGF6MTMiLCJhIjoiY2xqd3NydDI0MGVmaDNkbnZ1eDJodXZ4ZSJ9.Dw_GajVD9Y5z20S6BgfbpA';
+
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [0, 0],
+        zoom: 2
+    });
+
+    const gpxFiles = [
+    'SA-Day-1.gpx',
+    'SA-Day-2.gpx',
+    ];
+
+    const mapImages = [
+    '20240605_070837313_iOS.jpg',
+    '20240605_070839784_iOS.jpg',
+    '20240605_075948626_iOS.jpg',
+    '20240605_080043321_iOS.jpg',
+    '20240605_081434644_iOS.jpg',
+    '20240605_161505752_iOS.jpg',
+    '20240605_173249851_iOS.jpg',
+    '20240605_183454198_iOS.jpg',
+
+    ];
+
+    const allRoutes = [];
+    const dayLayers = [];
+    let allLayer = null;
+
+    // Load and parse GPX files
+    function loadGPXFiles() {
+        gpxFiles.forEach((file, index) => {
+            fetch("data/gpx/" + file)
+                .then(response => response.text())
+                .then(gpxData => {
+                    const parser = new DOMParser();
+                    const gpx = parser.parseFromString(gpxData, 'application/xml');
+                    const geojson = toGeoJSON.gpx(gpx);
+
+                    const routeLayer = {
+                        id: 'route' + index,
+                        type: 'line',
+                        source: {
+                            type: 'geojson',
+                            data: geojson
+                        },
+                        layout: {
+                            'line-join': 'round',
+                            'line-cap': 'round'
+                        },
+                        paint: {
+                            'line-color': '#' + Math.floor(Math.random() * 16777215).toString(16),
+                            'line-width': 5
+                        }
+                    };
+
+                    dayLayers.push(routeLayer);
+                    allRoutes.push(...geojson.features);
+
+                    map.on('load', () => {
+                        map.addLayer(routeLayer);
+                        map.setLayoutProperty('route' + index, 'visibility', 'none');
+                    });
+
+                    const daySelector = document.createElement('label');
+                    daySelector.innerHTML = `<input type="checkbox" id="day${index}" onchange="toggleDay(${index})"> Day ${index + 1}<br>`;
+                    document.getElementById('daySelectors').appendChild(daySelector);
+                });
+        });
+    }
+
+    loadGPXFiles();
+
+    function toggleDay(index) {
+        const visibility = map.getLayoutProperty('route' + index, 'visibility');
+        if (visibility === 'visible') {
+            map.setLayoutProperty('route' + index, 'visibility', 'none');
+        } else {
+            map.setLayoutProperty('route' + index, 'visibility', 'visible');
+        }
+    }
+
+    function toggleAllRoutes() {
+        if (document.getElementById('showAll').checked) {
+            if (!allLayer) {
+                const allRoutesGeoJSON = {
+                    type: 'FeatureCollection',
+                    features: allRoutes
+                };
+                allLayer = {
+                    id: 'allRoutes',
+                    type: 'line',
+                    source: {
+                        type: 'geojson',
+                        data: allRoutesGeoJSON
+                    },
+                    layout: {
+                        'line-join': 'round',
+                        'line-cap': 'round'
+                    },
+                    paint: {
+                        'line-color': '#ff0000',
+                        'line-width': 5
+                    }
+                };
+                map.addLayer(allLayer);
+            } else {
+                map.setLayoutProperty('allRoutes', 'visibility', 'visible');
+            }
+            dayLayers.forEach((_, index) => {
+                if (map.getLayer('route' + index)) {
+                    map.setLayoutProperty('route' + index, 'visibility', 'none');
+                }
+            });
+        } else {
+            map.setLayoutProperty('allRoutes', 'visibility', 'none');
+            dayLayers.forEach((_, index) => {
+                if (map.getLayer('route' + index)) {
+                    map.setLayoutProperty('route' + index, 'visibility', 'none');
+                }
+            });
+        }
+    }
+
+    function processImages() {
+        mapImages.forEach(imagePath => {
+            const img = new Image();
+            img.onload = function() {
+                EXIF.getData(img, function() {
+                    const lat = EXIF.getTag(this, 'GPSLatitude');
+                    const lon = EXIF.getTag(this, 'GPSLongitude');
+                    const latRef = EXIF.getTag(this, 'GPSLatitudeRef');
+                    const lonRef = EXIF.getTag(this, 'GPSLongitudeRef');
+
+                    if (lat && lon) {
+                        const latDecimal = convertDMSToDD(lat, latRef);
+                        const lonDecimal = convertDMSToDD(lon, lonRef);
+
+                        const el = document.createElement('div');
+                        el.className = 'marker';
+                        el.style.backgroundImage = 'url(image-solid.svg)';
+                        el.style.width = '30px';
+                        el.style.height = '30px';
+
+                        const marker = new mapboxgl.Marker(el)
+                            .setLngLat([lonDecimal, latDecimal])
+                            .addTo(map);
+
+                        const popup = new mapboxgl.Popup({
+                            offset: 25,
+                            closeOnClick: false
+                        }).setHTML('<img src="' + "data/img/" +  imagePath + '" alt="Picture" style="width:200px;height:auto;">');
+
+                        marker.setPopup(popup);
+
+                        el.addEventListener('mouseenter', () => popup.addTo(map));
+                        el.addEventListener('mouseleave', () => popup.remove());
+                    }
+                });
+            };
+            img.src = "data/img/" +  imagePath;
+        });
+    }
+
+    function convertDMSToDD(dms, ref) {
+        const degrees = dms[0].numerator;
+        const minutes = dms[1].numerator;
+        const seconds = dms[2].numerator / dms[2].denominator;
+
+        let dd = degrees + minutes/60 + seconds/(3600);
+
+        if (ref === 'S' || ref === 'W') {
+            dd = dd * -1;
+        }
+        return dd;
+    }
+
+    processImages();
+</script>
+</body>
+</html>
