@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GPX Routes and Pictures Viewer</title>
+    <title>Trips Leandro</title>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.js"></script>
@@ -17,7 +17,7 @@
 <body>
 
 <div id="menu">
-    <label><input type="checkbox" id="showAll" onchange="toggleAllRoutes()"> Show All Routes</label><br>
+    <label><input type="checkbox" id="showAll" onchange="toggleAllRoutes()"> Show Whole Trip</label><br>
     <div id="daySelectors"></div>
 </div>
 <div id="map"></div>
@@ -28,44 +28,44 @@
     const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
-        center: [0, 0],
-        zoom: 2
+        center: [9.0129, 40.1209], 
+        zoom: 8 
     });
 
     const gpxFiles = [
-    'SA-Day-1.gpx',
-    'SA-Day-2.gpx',
-    'SA-Day-3.gpx',
-    'SA-Day-4.gpx',
+        { file: 'SA-Day-1.gpx', label: 'Day 1: Start of Adventure' },
+        { file: 'SA-Day-2.gpx', label: 'Day 2: Exploring the North West coast' },
+        { file: 'SA-Day-3.gpx', label: 'Day 3: TET to Oristano' },
+        { file: 'SA-Day-4.gpx', label: 'Day 4: Exploring the clifs near Oristano' }
     ];
 
     const mapImages = [
-    '20240605_070837313_iOS.jpg',
-    '20240605_070839784_iOS.jpg',
-    '20240605_075948626_iOS.jpg',
-    '20240605_080043321_iOS.jpg',
-    '20240605_081434644_iOS.jpg',
-    '20240605_161505752_iOS.jpg',
-    '20240605_173249851_iOS.jpg',
-    '20240605_183454198_iOS.jpg',
-    '20240606_151414754_iOS.jpg',
-    '20240606_182241825_iOS.jpg',
-    '20240607_082147251_iOS.jpg',
-    '20240607_102241973_iOS.jpg',
-    '20240607_102717757_iOS.jpg',
-    '20240607_123958907_iOS.jpg',
-    '20240607_131254514_iOS.jpg',
-    '20240607_135711724_iOS.jpg',
-    '20240607_174046755_iOS.jpg',
-    '20240608_072554064_iOS.jpg',
-    '20240608_080456823_iOS.jpg',
-    '20240608_081331296_iOS.jpg',
-    '20240608_081946126_iOS.jpg',
-    '20240608_103553526_iOS.jpg',
-    '20240608_114345278_iOS.jpg',
-    '20240609_092825448_iOS.jpg',
-    '20240609_093831159_iOS.jpg',
-    '20240609_105623359_iOS.jpg',
+        '20240605_070837313_iOS.jpg',
+        '20240605_070839784_iOS.jpg',
+        '20240605_075948626_iOS.jpg',
+        '20240605_080043321_iOS.jpg',
+        '20240605_081434644_iOS.jpg',
+        '20240605_161505752_iOS.jpg',
+        '20240605_173249851_iOS.jpg',
+        '20240605_183454198_iOS.jpg',
+        '20240606_151414754_iOS.jpg',
+        '20240606_182241825_iOS.jpg',
+        '20240607_082147251_iOS.jpg',
+        '20240607_102241973_iOS.jpg',
+        '20240607_102717757_iOS.jpg',
+        '20240607_123958907_iOS.jpg',
+        '20240607_131254514_iOS.jpg',
+        '20240607_135711724_iOS.jpg',
+        '20240607_174046755_iOS.jpg',
+        '20240608_072554064_iOS.jpg',
+        '20240608_080456823_iOS.jpg',
+        '20240608_081331296_iOS.jpg',
+        '20240608_081946126_iOS.jpg',
+        '20240608_103553526_iOS.jpg',
+        '20240608_114345278_iOS.jpg',
+        '20240609_092825448_iOS.jpg',
+        '20240609_093831159_iOS.jpg',
+        '20240609_105623359_iOS.jpg',
 
     ];
 
@@ -73,10 +73,26 @@
     const dayLayers = [];
     let allLayer = null;
 
+    function generateColor() {
+        let color;
+        do {
+            color = Math.floor(Math.random() * 16777215).toString(16);
+        } while (isColorTooLight(color));
+        return color;
+    }
+
+    // Check if a color is too light
+    function isColorTooLight(color) {
+        const r = parseInt(color.substr(0, 2), 16);
+        const g = parseInt(color.substr(2, 2), 16);
+        const b = parseInt(color.substr(4, 2), 16);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        return brightness > 180;
+    }
     // Load and parse GPX files
     function loadGPXFiles() {
-        gpxFiles.forEach((file, index) => {
-            fetch("data/gpx/" + file)
+        gpxFiles.forEach((gpxFile, index) => {
+            fetch("data/gpx/" + gpxFile.file)
                 .then(response => response.text())
                 .then(gpxData => {
                     const parser = new DOMParser();
@@ -95,7 +111,7 @@
                             'line-cap': 'round'
                         },
                         paint: {
-                            'line-color': '#' + Math.floor(Math.random() * 16777215).toString(16),
+                            'line-color': '#' + generateColor(),
                             'line-width': 5
                         }
                     };
@@ -109,7 +125,7 @@
                     });
 
                     const daySelector = document.createElement('label');
-                    daySelector.innerHTML = `<input type="checkbox" id="day${index}" onchange="toggleDay(${index})"> Day ${index + 1}<br>`;
+                    daySelector.innerHTML = `<input type="checkbox" id="day${index}" onchange="toggleDay(${index})"> ${gpxFile.label}<br>`;
                     document.getElementById('daySelectors').appendChild(daySelector);
                 });
         });
@@ -127,7 +143,10 @@
     }
 
     function toggleAllRoutes() {
-        if (document.getElementById('showAll').checked) {
+        const showAll = document.getElementById('showAll').checked;
+        const daySelectors = document.getElementById('daySelectors').getElementsByTagName('input');
+
+        if (showAll) {
             if (!allLayer) {
                 const allRoutesGeoJSON = {
                     type: 'FeatureCollection',
@@ -158,6 +177,11 @@
                     map.setLayoutProperty('route' + index, 'visibility', 'none');
                 }
             });
+            // Disable all day checkboxes
+            for (let i = 0; i < daySelectors.length; i++) {
+                daySelectors[i].checked = false;
+                daySelectors[i].disabled = true;
+            }
         } else {
             map.setLayoutProperty('allRoutes', 'visibility', 'none');
             dayLayers.forEach((_, index) => {
@@ -165,6 +189,10 @@
                     map.setLayoutProperty('route' + index, 'visibility', 'none');
                 }
             });
+            // Enable all day checkboxes
+            for (let i = 0; i < daySelectors.length; i++) {
+                daySelectors[i].disabled = false;
+            }
         }
     }
 
