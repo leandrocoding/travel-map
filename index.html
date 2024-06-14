@@ -91,7 +91,7 @@
     }
     // Load and parse GPX files
     function loadGPXFiles() {
-        gpxFiles.forEach((gpxFile, index) => {
+        Promise.all(gpxFiles.map((gpxFile, index) => 
             fetch("data/gpx/" + gpxFile.file)
                 .then(response => response.text())
                 .then(gpxData => {
@@ -124,10 +124,14 @@
                         map.setLayoutProperty('route' + index, 'visibility', 'none');
                     });
 
-                    const daySelector = document.createElement('label');
-                    daySelector.innerHTML = `<input type="checkbox" id="day${index}" onchange="toggleDay(${index})"> ${gpxFile.label}<br>`;
-                    document.getElementById('daySelectors').appendChild(daySelector);
-                });
+                    return { gpxFile, index };
+                })
+        )).then(results => {
+            results.forEach(({ gpxFile, index }) => {
+                const daySelector = document.createElement('label');
+                daySelector.innerHTML = `<input type="checkbox" id="day${index}" onchange="toggleDay(${index})"> ${gpxFile.label}<br>`;
+                document.getElementById('daySelectors').appendChild(daySelector);
+            });
         });
     }
 
