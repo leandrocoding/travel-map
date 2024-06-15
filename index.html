@@ -34,7 +34,7 @@
 
     const gpxFiles = [
         { file: 'SA-Day-1.gpx', label: 'Day 1: Start of Adventure' },
-        { file: 'SA-Day-2.gpx', label: 'Day 2: Exploring the North West coast' },
+        { file: 'SA-Day-2.gpx', label: 'Day 2: Exploring the North-west coast' },
         { file: 'SA-Day-3.gpx', label: 'Day 3: TET to Oristano' },
         { file: 'SA-Day-4.gpx', label: 'Day 4: Exploring the clifs near Oristano' }
     ];
@@ -72,6 +72,14 @@
     const allRoutes = [];
     const dayLayers = [];
     let allLayer = null;
+    function genRGB()
+    {
+        let r,g,b;
+        do {
+            r,g,b = Math.floor(Math.random() * 256), Math.floor(Math.random() * 256), Math.floor(Math.random() * 256);
+        } while ((r*0.299 + g*0.587 + b*0.114)>200);
+        return "rgba("+r+","+g+","+b+",0.7)";
+    }
 
     function generateColor() {
         let color;
@@ -111,7 +119,7 @@
                             'line-cap': 'round'
                         },
                         paint: {
-                            'line-color': '#' + generateColor(),
+                            'line-color': genRGB(),
                             'line-width': 5
                         }
                     };
@@ -168,7 +176,7 @@
                         'line-cap': 'round'
                     },
                     paint: {
-                        'line-color': '#ff0000',
+                        'line-color': 'rgba(0, 0, 255, 0.5)',
                         'line-width': 5
                     }
                 };
