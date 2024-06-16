@@ -272,8 +272,8 @@
             const popup = new mapboxgl.Popup({
                     offset: 25,
                     closeOnClick: true,
-                    maxWidth: '590px'
-                }).setHTML('<iframe width="560" height="315" src="https://www.youtube.com/embed/u1f2KGRRynE" allowfullscreen></iframe>');
+                    maxWidth: '50vw'
+                }).setHTML('<div class="responsive-iframe-container"> <iframe src="https://www.youtube.com/embed/u1f2KGRRynE" allowfullscreen></iframe> </div>');
 
                 marker.setPopup(popup);
 
