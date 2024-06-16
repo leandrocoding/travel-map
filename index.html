@@ -6,6 +6,7 @@
     <title>Trips Leandro</title>
     <script src='https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.css' rel='stylesheet' />
+    <link href='style.css' rel='stylesheet' />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/togeojson/0.16.0/togeojson.min.js"></script>
     <style>
@@ -244,7 +245,42 @@
                     }
                 });
             };
-            img.src = "data/img/optimized/" +  imagePath;
+            img.src = "data/img/optimized/" +  imagePath; // this is the image where the exif data is going to be extracted
+        });
+    }
+
+    function addVideoMarkers() {
+        const videoMarkers = [
+//         {
+//     // "lng": 8.66480459267018,
+//     // "lat": 40.55910982526967
+// }
+            { lat: 40.55910982526967, lon: 8.66480459267018, video: 'https://www.youtube.com/watch?v=u1f2KGRRynE' }
+        ];
+
+        videoMarkers.forEach(({ lat, lon, video }) => {
+            const el = document.createElement('div');
+            el.className = 'marker';
+            el.style.backgroundImage = 'url(video-icon.svg)';
+            el.style.width = '40px';
+            el.style.height = '40px';
+
+            const marker = new mapboxgl.Marker(el)
+                .setLngLat([lon, lat])
+                .addTo(map);
+            
+            const popup = new mapboxgl.Popup({
+                    offset: 25,
+                    closeOnClick: true,
+                    maxWidth: '590px'
+                }).setHTML('<iframe width="560" height="315" src="https://www.youtube.com/embed/u1f2KGRRynE" allowfullscreen></iframe>');
+
+                marker.setPopup(popup);
+
+                // el.addEventListener('mouseenter', () => popup.addTo(map));
+                // el.addEventListener('mouseleave', () => popup.remove());
+
+            el.addEventListener('click', () => popup.addTo(map)); // Open popup on click 
         });
     }
 
@@ -262,6 +298,7 @@
     }
 
     processImages();
+    addVideoMarkers();
 </script>
 </body>
 </html>
