@@ -43,7 +43,7 @@ def optimize_images_in_folder(input_folder, output_folder, max_width=800, max_he
             output_path = os.path.join(output_folder, filename)
             try:
                 optimize_image(input_path, output_path, max_width, max_height, quality)
-                print(f"Optimized {filename} and saved to {output_path}")
+                print(f"\"{filename}\",")
             except Exception as e:
                 print(f"Could not optimize {filename}: {e}")
 
