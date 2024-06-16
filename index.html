@@ -32,17 +32,19 @@
         center: [9.0129, 40.1209], 
         zoom: 8 
     });
+    const DARKRED = "rgba(166, 39, 30 ,0.5)"
+    const DARKBLUE = "rgba(5, 5, 255, 0.5)"
 
     const gpxFiles = [
-        { file: 'SA-Day-1.gpx', label: 'Day 1: Start of Adventure' },
-        { file: 'SA-Day-2.gpx', label: 'Day 2: Exploring the North-west coast' },
-        { file: 'SA-Day-3.gpx', label: 'Day 3: TET to Oristano' },
-        { file: 'SA-Day-4.gpx', label: 'Day 4: Exploring the clifs near Oristano' },
-        { file: 'SA-Day-5.gpx', label: 'Day 5: Oristano - Sant Antico' },
-        { file: 'SA-Day-6.gpx', label: 'Day 6: Sant Antico - Cagliari' },
-        { file: 'SA-Day-7.gpx', label: 'Day 7: Cagliari - Belvi' },
-        { file: 'SA-Day-8.gpx', label: 'Day 8: Belvi - Irgoli' },
-        { file: 'SA-Day-9.gpx', label: 'Day 9: Irgoli - Olbia - Porto Torres' },
+        { file: 'SA-Day-1.gpx', label: 'Day 1: Start of Adventure' , color: DARKRED},
+        { file: 'SA-Day-2.gpx', label: 'Day 2: Exploring the North-west coast' , color: DARKBLUE},
+        { file: 'SA-Day-3.gpx', label: 'Day 3: TET to Oristano' , color: DARKRED},
+        { file: 'SA-Day-4.gpx', label: 'Day 4: Exploring the clifs near Oristano' , color: DARKBLUE},
+        { file: 'SA-Day-5.gpx', label: 'Day 5: Oristano - Sant Antico' , color: DARKRED},
+        { file: 'SA-Day-6.gpx', label: 'Day 6: Sant Antico - Cagliari' , color: DARKBLUE},
+        { file: 'SA-Day-7.gpx', label: 'Day 7: Cagliari - Belvi' , color: DARKRED},
+        { file: 'SA-Day-8.gpx', label: 'Day 8: Belvi - Irgoli' , color: DARKBLUE},
+        { file: 'SA-Day-9.gpx', label: 'Day 9: Irgoli - Olbia - Porto Torres' , color: DARKRED},
 
     ];
 
@@ -113,7 +115,9 @@
                     const parser = new DOMParser();
                     const gpx = parser.parseFromString(gpxData, 'application/xml');
                     const geojson = toGeoJSON.gpx(gpx);
-
+                    let r, g, b;
+                    r, g, b = gpxFile.color;
+                    console.log(gpxFile.color);
                     const routeLayer = {
                         id: 'route' + index,
                         type: 'line',
@@ -126,7 +130,7 @@
                             'line-cap': 'round'
                         },
                         paint: {
-                            'line-color': genRGB(),
+                            'line-color': gpxFile.color,
                             'line-width': 5
                         }
                     };
