@@ -20,6 +20,7 @@
 <div id="menu">
     <label><input type="checkbox" id="showAll" onchange="toggleAllRoutes()"> Show Whole Trip</label><br>
     <div id="daySelectors"></div>
+    <label><input type="checkbox" id="hideMarkers" onchange="toggleShowMarkers()"> Hide Markers (Image/Video)</label>
 </div>
 <div id="map"></div>
 
@@ -268,7 +269,7 @@
                         const lonDecimal = convertDMSToDD(lon, lonRef);
 
                         const el = document.createElement('div');
-                        el.className = 'image-marker';
+                        el.className = 'image-marker mapboxgl-marker';
                         el.style.backgroundImage = 'url(icons/image-solid.svg)';
                         el.style.width = '30px';
                         el.style.height = '30px';
@@ -304,7 +305,7 @@
 
         videoMarkers.forEach(({ lat, lon, video }) => {
             const el = document.createElement('div');
-            el.className = 'video-marker';
+            el.className = 'video-marker mapboxgl-marker';
             el.style.backgroundImage = 'url(icons/video-icon.svg)';
             el.style.width = '40px';
             el.style.height = '40px';
@@ -339,6 +340,26 @@
             dd = dd * -1;
         }
         return dd;
+    }
+    hideMarkers = () => {
+        const markers = document.getElementsByClassName('mapboxgl-marker');
+        for (let i = 0; i < markers.length; i++) {
+            markers[i].style.visibility = "hidden";
+        }
+    }
+    showMarkers = () => {
+        const markers = document.getElementsByClassName('mapboxgl-marker');
+        for (let i = 0; i < markers.length; i++) {
+            markers[i].style.visibility = "visible";
+        }
+    }
+    toggleShowMarkers = () => {
+        const hideMarkerCheck = document.getElementById('hideMarkers').checked;
+        if (!hideMarkerCheck) {
+            showMarkers();
+        } else {
+            hideMarkers();
+        }
     }
 
     processImages();
