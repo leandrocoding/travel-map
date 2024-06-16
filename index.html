@@ -30,7 +30,7 @@
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [9.0129, 40.1209], 
-        zoom: 8 
+        zoom: 7 
     });
     const DARKRED = "rgba(166, 39, 30 ,0.5)"
     const DARKBLUE = "rgba(5, 5, 255, 0.5)"
@@ -268,8 +268,8 @@
                         const lonDecimal = convertDMSToDD(lon, lonRef);
 
                         const el = document.createElement('div');
-                        el.className = 'marker';
-                        el.style.backgroundImage = 'url(image-solid.svg)';
+                        el.className = 'image-marker';
+                        el.style.backgroundImage = 'url(icons/image-solid.svg)';
                         el.style.width = '30px';
                         el.style.height = '30px';
 
@@ -304,8 +304,8 @@
 
         videoMarkers.forEach(({ lat, lon, video }) => {
             const el = document.createElement('div');
-            el.className = 'marker';
-            el.style.backgroundImage = 'url(video-icon.svg)';
+            el.className = 'video-marker';
+            el.style.backgroundImage = 'url(icons/video-icon.svg)';
             el.style.width = '40px';
             el.style.height = '40px';
 
