@@ -280,13 +280,14 @@
 
                         const popup = new mapboxgl.Popup({
                             offset: 25,
-                            closeOnClick: false
-                        }).setHTML('<img src="' + "data/img/optimized/" +  imagePath + '" alt="Picture" style="width:200px;height:auto;">');
+                            closeOnClick: true,
+                            maxWidth: "400px"
+                        }).setHTML("<a target=”_blank” href=data/img/jpg_big/" +  imagePath + '><img src="' + "data/img/optimized/" +  imagePath + '" alt="Picture" style="width:280px;height:auto;"></a>');
 
                         marker.setPopup(popup);
 
-                        el.addEventListener('mouseenter', () => popup.addTo(map));
-                        el.addEventListener('mouseleave', () => popup.remove());
+                        el.addEventListener('click', () => popup.addTo(map));
+                        // el.addEventListener('mouseleave', () => popup.remove());
                     }
                 });
             };
