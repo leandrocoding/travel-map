@@ -9,15 +9,17 @@
     <link href='style.css' rel='stylesheet' />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/togeojson/0.16.0/togeojson.min.js"></script>
-    <style>
-        body { margin: 0; padding: 0; }
-        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
-        #menu { position: absolute; background: white; padding: 10px; z-index: 1; }
-    </style>
+
 </head>
 <body>
-
-<div id="menu">
+<nav>
+    <div class="ham-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</nav>
+<div id="menu" class="menu">
     <label><input type="checkbox" id="showAll" onchange="toggleAllRoutes()"> Show Whole Trip</label><br>
     <div id="daySelectors"></div>
     <label><input type="checkbox" id="hideMarkers" onchange="toggleShowMarkers()"> Hide Markers (Image/Video)</label>
@@ -365,6 +367,17 @@
 
     processImages();
     addVideoMarkers();
+
+    const hamMenu = document.querySelector(".ham-menu");
+
+    const offScreenMenu = document.querySelector(".menu");
+
+    hamMenu.addEventListener("click", () => {
+        hamMenu.classList.toggle("active");
+        offScreenMenu.classList.toggle("active");
+    });
+    hamMenu.classList.toggle("active");
+    offScreenMenu.classList.toggle("active");
 </script>
 </body>
 </html>
