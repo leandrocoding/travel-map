@@ -22,6 +22,13 @@
                         {"filename": "20240605_171353817_iOS.jpg"},
                         {"filename": "20240605_173249851_iOS.jpg"},
                         {"filename": "20240605_183454198_iOS.jpg"}
+                    ],
+                    "videos":[
+                        {
+                            "lon": 8.66480459267018,
+                            "lat": 40.55910982526967,
+                            "videourl": "https://www.youtube.com/watch?v=u1f2KGRRynE"
+                          }
                     ]
                 },
                 {
@@ -37,7 +44,8 @@
                         {"filename": "20240606_150147345_iOS.jpg"},
                         {"filename": "20240606_151414754_iOS.jpg"},
                         {"filename": "20240606_182241825_iOS.jpg"}
-                    ]
+                    ],
+                    "videos":[]
                 },
                 {
                     "ID": 3,
@@ -54,7 +62,8 @@
                         {"filename": "20240607_131254514_iOS.jpg"},
                         {"filename": "20240607_135711724_iOS.jpg"},
                         {"filename": "20240607_174046755_iOS.jpg"}
-                    ]
+                    ],
+                    "videos":[]
                 },
                 {
                     "ID": 4,
@@ -68,7 +77,8 @@
                         {"filename": "20240608_081946126_iOS.jpg"},
                         {"filename": "20240608_103553526_iOS.jpg"},
                         {"filename": "20240608_114345278_iOS.jpg"}
-                    ]
+                    ],
+                    "videos":[]
                 },
                 {
                     "ID": 5,
@@ -80,7 +90,8 @@
                         {"filename": "20240609_093831159_iOS.jpg"},
                         {"filename": "20240609_105623359_iOS.jpg"},
                         {"filename": "20240609_120627547_iOS.jpg"}
-                    ]
+                    ],
+                    "videos":[]
                 },
                 {
                     "ID": 6,
@@ -99,7 +110,8 @@
                         {"filename": "20240610_172818327_iOS.jpg"},
                         {"filename": "20240610_183306380_iOS.jpg"},
                         {"filename": "20240610_185114760_iOS.jpg"}
-                    ]
+                    ],
+                    "videos":[]
                 },
                 {
                     "ID": 7,
@@ -113,7 +125,8 @@
                         {"filename": "20240611_123334728_iOS.jpg"},
                         {"filename": "20240611_125437182_iOS.jpg"},
                         {"filename": "20240611_162127247_iOS.jpg"}
-                    ]
+                    ],
+                    "videos":[]
                 },
                 {
                     "ID": 8,
@@ -125,7 +138,8 @@
                         {"filename": "20240612_110059181_iOS.jpg"},
                         {"filename": "20240612_115007150_iOS.jpg"},
                         {"filename": "20240612_132941767_iOS.jpg"}
-                    ]
+                    ],
+                    "videos":[]
                 },
                 {
                     "ID": 9,
@@ -135,7 +149,8 @@
                     "images": [
                         {"filename": "20240613_102149778_iOS.jpg"},
                         {"filename": "20240613_164808358_iOS.jpg"}
-                    ]
+                    ],
+                    "videos":[]
                 }
             ]
         }
