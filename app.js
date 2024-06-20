@@ -7,120 +7,120 @@ const map = new mapboxgl.Map({
   center: [9.0129, 40.1209],
   zoom: 7,
 });
-const DARKRED = "rgba(166, 39, 30 ,0.5)";
-const DARKBLUE = "rgba(5, 5, 255, 0.5)";
+// const DARKRED = "rgba(166, 39, 30 ,0.5)";
+// const DARKBLUE = "rgba(5, 5, 255, 0.5)";
 
-const gpxFiles = [
-  {
-    file: "SA-Day-1.gpx",
-    label: "Day 1: Start of Adventure",
-    color: DARKRED,
-  },
-  {
-    file: "SA-Day-2.gpx",
-    label: "Day 2: Exploring the North-west coast",
-    color: DARKBLUE,
-  },
-  {
-    file: "SA-Day-3.gpx",
-    label: "Day 3: TET to Oristano",
-    color: DARKRED,
-  },
-  {
-    file: "SA-Day-4.gpx",
-    label: "Day 4: Exploring the clifs near Oristano",
-    color: DARKBLUE,
-  },
-  {
-    file: "SA-Day-5.gpx",
-    label: "Day 5: Oristano - Sant Antico",
-    color: DARKRED,
-  },
-  {
-    file: "SA-Day-6.gpx",
-    label: "Day 6: Sant Antico - Cagliari",
-    color: DARKBLUE,
-  },
-  {
-    file: "SA-Day-7.gpx",
-    label: "Day 7: Cagliari - Belvi",
-    color: DARKRED,
-  },
-  {
-    file: "SA-Day-8.gpx",
-    label: "Day 8: Belvi - Irgoli",
-    color: DARKBLUE,
-  },
-  {
-    file: "SA-Day-9.gpx",
-    label: "Day 9: Irgoli - Olbia - Porto Torres",
-    color: DARKRED,
-  },
-];
+// const gpxFiles = [
+//   {
+//     file: "SA-Day-1.gpx",
+//     label: "Day 1: Start of Adventure",
+//     color: DARKRED,
+//   },
+//   {
+//     file: "SA-Day-2.gpx",
+//     label: "Day 2: Exploring the North-west coast",
+//     color: DARKBLUE,
+//   },
+//   {
+//     file: "SA-Day-3.gpx",
+//     label: "Day 3: TET to Oristano",
+//     color: DARKRED,
+//   },
+//   {
+//     file: "SA-Day-4.gpx",
+//     label: "Day 4: Exploring the clifs near Oristano",
+//     color: DARKBLUE,
+//   },
+//   {
+//     file: "SA-Day-5.gpx",
+//     label: "Day 5: Oristano - Sant Antico",
+//     color: DARKRED,
+//   },
+//   {
+//     file: "SA-Day-6.gpx",
+//     label: "Day 6: Sant Antico - Cagliari",
+//     color: DARKBLUE,
+//   },
+//   {
+//     file: "SA-Day-7.gpx",
+//     label: "Day 7: Cagliari - Belvi",
+//     color: DARKRED,
+//   },
+//   {
+//     file: "SA-Day-8.gpx",
+//     label: "Day 8: Belvi - Irgoli",
+//     color: DARKBLUE,
+//   },
+//   {
+//     file: "SA-Day-9.gpx",
+//     label: "Day 9: Irgoli - Olbia - Porto Torres",
+//     color: DARKRED,
+//   },
+// ];
 
-const mapImages = [
-  "20240605_070837313_iOS.jpg",
-  "20240605_070837313_iOS.jpg",
-  "20240605_070839784_iOS.jpg",
-  "20240605_075948626_iOS.jpg",
-  "20240605_080043321_iOS.jpg",
-  "20240605_081434644_iOS.jpg",
-  "20240605_104655136_iOS.jpg",
-  "20240605_161505752_iOS.jpg",
-  "20240605_165008085_iOS.jpg",
-  "20240605_171353817_iOS.jpg",
-  "20240605_173249851_iOS.jpg",
-  "20240605_183454198_iOS.jpg",
-  "20240606_095504791_iOS.jpg",
-  "20240606_100520333_iOS.jpg",
-  "20240606_101409727_iOS.jpg",
-  "20240606_150128495_iOS.jpg",
-  "20240606_150147345_iOS.jpg",
-  "20240606_151414754_iOS.jpg",
-  "20240606_182241825_iOS.jpg",
-  "20240607_082147251_iOS.jpg",
-  "20240607_102241973_iOS.jpg",
-  "20240607_102717757_iOS.jpg",
-  "20240607_123958907_iOS.jpg",
-  "20240607_130218154_iOS.jpg",
-  "20240607_131008156_iOS.jpg",
-  "20240607_131254514_iOS.jpg",
-  "20240607_135711724_iOS.jpg",
-  "20240607_174046755_iOS.jpg",
-  "20240608_072554064_iOS.jpg",
-  "20240608_080456823_iOS.jpg",
-  "20240608_081331296_iOS.jpg",
-  "20240608_081946126_iOS.jpg",
-  "20240608_103553526_iOS.jpg",
-  "20240608_114345278_iOS.jpg",
-  "20240609_092825448_iOS.jpg",
-  "20240609_093831159_iOS.jpg",
-  "20240609_105623359_iOS.jpg",
-  "20240609_120627547_iOS.jpg",
-  "20240610_112033502_iOS.jpg",
-  "20240610_120818083_iOS.jpg",
-  "20240610_162550741_iOS.jpg",
-  "20240610_162945749_iOS.jpg",
-  "20240610_163059125_iOS.jpg",
-  "20240610_164255280_iOS.jpg",
-  "20240610_165301962_iOS.jpg",
-  "20240610_165643856_iOS.jpg",
-  "20240610_172818327_iOS.jpg",
-  "20240610_183306380_iOS.jpg",
-  "20240610_185114760_iOS.jpg",
-  "20240611_102958448_iOS.jpg",
-  "20240611_110036616_iOS.jpg",
-  "20240611_114845764_iOS.jpg",
-  "20240611_123334728_iOS.jpg",
-  "20240611_125437182_iOS.jpg",
-  "20240611_162127247_iOS.jpg",
-  "20240612_092042799_iOS.jpg",
-  "20240612_110059181_iOS.jpg",
-  "20240612_115007150_iOS.jpg",
-  "20240612_132941767_iOS.jpg",
-  "20240613_102149778_iOS.jpg",
-  "20240613_164808358_iOS.jpg",
-];
+// const mapImages = [
+//   "20240605_070837313_iOS.jpg",
+//   "20240605_070837313_iOS.jpg",
+//   "20240605_070839784_iOS.jpg",
+//   "20240605_075948626_iOS.jpg",
+//   "20240605_080043321_iOS.jpg",
+//   "20240605_081434644_iOS.jpg",
+//   "20240605_104655136_iOS.jpg",
+//   "20240605_161505752_iOS.jpg",
+//   "20240605_165008085_iOS.jpg",
+//   "20240605_171353817_iOS.jpg",
+//   "20240605_173249851_iOS.jpg",
+//   "20240605_183454198_iOS.jpg",
+//   "20240606_095504791_iOS.jpg",
+//   "20240606_100520333_iOS.jpg",
+//   "20240606_101409727_iOS.jpg",
+//   "20240606_150128495_iOS.jpg",
+//   "20240606_150147345_iOS.jpg",
+//   "20240606_151414754_iOS.jpg",
+//   "20240606_182241825_iOS.jpg",
+//   "20240607_082147251_iOS.jpg",
+//   "20240607_102241973_iOS.jpg",
+//   "20240607_102717757_iOS.jpg",
+//   "20240607_123958907_iOS.jpg",
+//   "20240607_130218154_iOS.jpg",
+//   "20240607_131008156_iOS.jpg",
+//   "20240607_131254514_iOS.jpg",
+//   "20240607_135711724_iOS.jpg",
+//   "20240607_174046755_iOS.jpg",
+//   "20240608_072554064_iOS.jpg",
+//   "20240608_080456823_iOS.jpg",
+//   "20240608_081331296_iOS.jpg",
+//   "20240608_081946126_iOS.jpg",
+//   "20240608_103553526_iOS.jpg",
+//   "20240608_114345278_iOS.jpg",
+//   "20240609_092825448_iOS.jpg",
+//   "20240609_093831159_iOS.jpg",
+//   "20240609_105623359_iOS.jpg",
+//   "20240609_120627547_iOS.jpg",
+//   "20240610_112033502_iOS.jpg",
+//   "20240610_120818083_iOS.jpg",
+//   "20240610_162550741_iOS.jpg",
+//   "20240610_162945749_iOS.jpg",
+//   "20240610_163059125_iOS.jpg",
+//   "20240610_164255280_iOS.jpg",
+//   "20240610_165301962_iOS.jpg",
+//   "20240610_165643856_iOS.jpg",
+//   "20240610_172818327_iOS.jpg",
+//   "20240610_183306380_iOS.jpg",
+//   "20240610_185114760_iOS.jpg",
+//   "20240611_102958448_iOS.jpg",
+//   "20240611_110036616_iOS.jpg",
+//   "20240611_114845764_iOS.jpg",
+//   "20240611_123334728_iOS.jpg",
+//   "20240611_125437182_iOS.jpg",
+//   "20240611_162127247_iOS.jpg",
+//   "20240612_092042799_iOS.jpg",
+//   "20240612_110059181_iOS.jpg",
+//   "20240612_115007150_iOS.jpg",
+//   "20240612_132941767_iOS.jpg",
+//   "20240613_102149778_iOS.jpg",
+//   "20240613_164808358_iOS.jpg",
+// ];
 
 const allRoutes = [];
 const dayLayers = [];
@@ -154,10 +154,11 @@ function isColorTooLight(color) {
   return brightness > 180;
 }
 // Load and parse GPX files
-function loadGPXFiles() {
+function loadGPXFiles(tripdata) {
+  gpxFiles=tripdata.days
   Promise.all(
     gpxFiles.map((gpxFile, index) =>
-      fetch("data/gpx/" + gpxFile.file)
+      fetch("data/gpx/" + gpxFile.gpx_file_name)
         .then((response) => response.text())
         .then((gpxData) => {
           const parser = new DOMParser();
@@ -203,7 +204,6 @@ function loadGPXFiles() {
   });
 }
 
-loadGPXFiles();
 
 function toggleDay(index) {
   const visibility = map.getLayoutProperty("route" + index, "visibility");
@@ -392,6 +392,32 @@ toggleShowMarkers = () => {
 
 processImages();
 addVideoMarkers();
+
+function processDay(){
+
+}
+
+function processTrip(tripdata){
+
+}
+
+function fetchJSONData() {
+  fetch("./data.json")
+      .then((res) => {
+          if (!res.ok) {
+              throw new Error
+                  (`HTTP error! Status: ${res.status}`);
+          }
+          return res.json();
+      })
+      .then((data) => {
+        console.log(data)
+      })
+      .catch((error) => 
+             console.error("Unable to fetch data:", error));
+}
+fetchJSONData();
+
 
 const hamMenu = document.querySelector(".ham-menu");
 

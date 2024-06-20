@@ -1,0 +1,143 @@
+{
+    "last-update": "2024-06-19",
+    "trips": [
+        {
+            "name": "Sardinia 2024",
+            "days": [
+                {
+                    "ID": 1,
+                    "gpx_file_name": "SA-Day-1.gpx",
+                    "label": "Day 1: Start of Adventure",
+                    "track_color": "rgba(166, 39, 30 ,0.5)",
+                    "images": [
+                        {"filename": "20240605_070837313_iOS.jpg"},
+                        {"filename": "20240605_070837313_iOS.jpg"},
+                        {"filename": "20240605_070839784_iOS.jpg"},
+                        {"filename": "20240605_075948626_iOS.jpg"},
+                        {"filename": "20240605_080043321_iOS.jpg"},
+                        {"filename": "20240605_081434644_iOS.jpg"},
+                        {"filename": "20240605_104655136_iOS.jpg"},
+                        {"filename": "20240605_161505752_iOS.jpg"},
+                        {"filename": "20240605_165008085_iOS.jpg"},
+                        {"filename": "20240605_171353817_iOS.jpg"},
+                        {"filename": "20240605_173249851_iOS.jpg"},
+                        {"filename": "20240605_183454198_iOS.jpg"},
+                        {"filename": "20240606_095504791_iOS.jpg"},
+                        {"filename": "20240606_100520333_iOS.jpg"},
+                        {"filename": "20240606_101409727_iOS.jpg"},
+                        {"filename": "20240606_150128495_iOS.jpg"},
+                        {"filename": "20240606_150147345_iOS.jpg"},
+                        {"filename": "20240606_151414754_iOS.jpg"},
+                        {"filename": "20240606_182241825_iOS.jpg"},
+                        {"filename": "20240607_082147251_iOS.jpg"},
+                        {"filename": "20240607_102241973_iOS.jpg"},
+                        {"filename": "20240607_102717757_iOS.jpg"},
+                        {"filename": "20240607_123958907_iOS.jpg"},
+                        {"filename": "20240607_130218154_iOS.jpg"},
+                        {"filename": "20240607_131008156_iOS.jpg"},
+                        {"filename": "20240607_131254514_iOS.jpg"},
+                        {"filename": "20240607_135711724_iOS.jpg"},
+                        {"filename": "20240607_174046755_iOS.jpg"},
+                        {"filename": "20240608_072554064_iOS.jpg"},
+                        {"filename": "20240608_080456823_iOS.jpg"},
+                        {"filename": "20240608_081331296_iOS.jpg"},
+                        {"filename": "20240608_081946126_iOS.jpg"},
+                        {"filename": "20240608_103553526_iOS.jpg"},
+                        {"filename": "20240608_114345278_iOS.jpg"},
+                        {"filename": "20240609_092825448_iOS.jpg"},
+                        {"filename": "20240609_093831159_iOS.jpg"},
+                        {"filename": "20240609_105623359_iOS.jpg"},
+                        {"filename": "20240609_120627547_iOS.jpg"},
+                        {"filename": "20240610_112033502_iOS.jpg"},
+                        {"filename": "20240610_120818083_iOS.jpg"},
+                        {"filename": "20240610_162550741_iOS.jpg"},
+                        {"filename": "20240610_162945749_iOS.jpg"},
+                        {"filename": "20240610_163059125_iOS.jpg"},
+                        {"filename": "20240610_164255280_iOS.jpg"},
+                        {"filename": "20240610_165301962_iOS.jpg"},
+                        {"filename": "20240610_165643856_iOS.jpg"},
+                        {"filename": "20240610_172818327_iOS.jpg"},
+                        {"filename": "20240610_183306380_iOS.jpg"},
+                        {"filename": "20240610_185114760_iOS.jpg"},
+                        {"filename": "20240611_102958448_iOS.jpg"},
+                        {"filename": "20240611_110036616_iOS.jpg"},
+                        {"filename": "20240611_114845764_iOS.jpg"},
+                        {"filename": "20240611_123334728_iOS.jpg"},
+                        {"filename": "20240611_125437182_iOS.jpg"},
+                        {"filename": "20240611_162127247_iOS.jpg"},
+                        {"filename": "20240612_092042799_iOS.jpg"},
+                        {"filename": "20240612_110059181_iOS.jpg"},
+                        {"filename": "20240612_115007150_iOS.jpg"},
+                        {"filename": "20240612_132941767_iOS.jpg"},
+                        {"filename": "20240613_102149778_iOS.jpg"},
+                        {"filename": "20240613_164808358_iOS.jpg"}
+                    ]
+                },
+                {
+                    "ID": 2,
+                    "gpx_file_name": "SA-Day-2.gpx",
+                    "label": "Day 2: Exploring the North-west coast",
+                    "track_color": "rgba(5, 5, 255, 0.5)",
+                    "images": [
+                    ]
+                },
+                {
+                    "ID": 3,
+                    "gpx_file_name": "SA-Day-3.gpx",
+                    "label": "Day 3: TET to Oristano",
+                    "track_color": "rgba(166, 39, 30 ,0.5)",
+                    "images": [
+                    ]
+                },
+                {
+                    "ID": 4,
+                    "gpx_file_name": "SA-Day-4.gpx",
+                    "label": "Day 4: Exploring the clifs near Oristano",
+                    "track_color": "rgba(5, 5, 255, 0.5)",
+                    "images": [
+                    ]
+                },
+                {
+                    "ID": 5,
+                    "gpx_file_name": "SA-Day-5.gpx",
+                    "label": "Day 5: Oristano - Sant Antico",
+                    "track_color": "rgba(166, 39, 30 ,0.5)",
+                    "images": [
+                    ]
+                },
+                {
+                    "ID": 6,
+                    "gpx_file_name": "SA-Day-6.gpx",
+                    "label": "Day 6: Sant Antico - Cagliari",
+                    "track_color": "rgba(5, 5, 255, 0.5)",
+                    "images": [
+                    ]
+                },
+                {
+                    "ID": 7,
+                    "gpx_file_name": "SA-Day-7.gpx",
+                    "label": "Day 7: Cagliari - Belvi",
+                    "track_color": "rgba(166, 39, 30 ,0.5)",
+                    "images": [
+                    ]
+                },
+                {
+                    "ID": 8,
+                    "gpx_file_name": "SA-Day-8.gpx",
+                    "label": "Day 8: Belvi - Irgoli",
+                    "track_color": "rgba(5, 5, 255, 0.5)",
+                    "images": [
+                    ]
+                },
+                {
+                    "ID": 9,
+                    "gpx_file_name": "SA-Day-9.gpx",
+                    "label": "Day 9: Irgoli - Olbia - Porto Torres",
+                    "track_color": "rgba(166, 39, 30 ,0.5)",
+                    "images": [
+                    ]
+                }
+            ]
+        }
+    ]
+}
